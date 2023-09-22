@@ -1,72 +1,23 @@
-class BankAccount:
+def sort_students(student_list):
+    sorted_students = sorted(student_list, key=lambda student: student.cgpa, reverse=True)
+    return sorted_students
 
-    def __init__(self, account_number, account_holder_name, initial_balance=0):
+class Student:
+    def __init__(self, name, roll_number, cgpa):
+        self.name = name
+        self.roll_number = roll_number
+        self.cgpa = cgpa
 
-        self.__account_number = account_number
+# Test with different input lists of students
+students_list = [
+    Student("John", "2021001", 3.9),
+    Student("Jane", "2021002", 3.7),
+    Student("Alice", "2021003", 3.8),
+    Student("Bob", "2021004", 3.6)
+]
 
-        self.__account_holder_name = account_holder_name
+sorted_students = sort_students(students_list)
 
-        self.__account_balance = initial_balance
-
-
-
-    def deposit(self, amount):
-
-        if amount > 0:
-
-            self.__account_balance += amount
-
-            print(f"Deposited {amount} units. New balance: {self.__account_balance}")
-
-        else:
-
-            print("Deposit amount must be greater than zero.")
-
-
-
-    def withdraw(self, amount):
-
-        if 0 < amount <= self.__account_balance:
-
-            self.__account_balance -= amount
-
-            print(f"Withdrew {amount} units. New balance: {self.__account_balance}")
-
-        else:
-
-            print("Withdrawal amount must be greater than zero and less than or equal to the account balance.")
-
-
-
-    def display_balance(self):
-
-        print(f"Account Holder: {self.__account_holder_name}")
-
-        print(f"Account Number: {self.__account_number}")
-
-        print(f"Account Balance: {self.__account_balance}")
-
-
-
-
-
-# Testing the BankAccount class
-
-if __name__ == "__main__":
-
-    account = BankAccount("1234567890", "John Doe", 1000)
-
-
-
-    account.display_balance()  # Should display the initial balance
-
-
-
-    account.deposit(500)  # Depositing 500 units
-
-    account.withdraw(200)  # Withdrawing 200 units
-
-
-
-    account.display_balance()  # Should display the updated balance after transactions
-
+# Print the sorted list of students
+for student in sorted_students:
+    print(f"Name: {student.name}, Roll Number: {student.roll_number}, CGPA: {student.cgpa}")
